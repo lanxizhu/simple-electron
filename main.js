@@ -1,12 +1,26 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain, nativeImage } = require("electron");
 const path = require("node:path");
+const url = require("node:url");
 
 function createWindow() {
+  const icon = nativeImage.createFromPath(
+    path.join(__dirname, "assets/favicon.ico")
+  );
+
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    icon: icon,
+    title: "Simple Electron App",
+    titleBarStyle: "hidden",
+    titleBarOverlay: {
+      color: "#ffffff00",
+      // symbolColor: "#74b9ff",
+      height: 30,
+    },
+
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
@@ -17,6 +31,13 @@ function createWindow() {
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
+
+  ipcMain.handle("base-info", () => {
+    return {
+      icon: icon.toDataURL(),
+      title: mainWindow.getTitle(),
+    };
+  });
 }
 
 // This method will be called when Electron has finished

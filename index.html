@@ -5,11 +5,58 @@
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self';style-src 'self' 'unsafe-inline';"
+      content="default-src 'self'; script-src 'self';style-src 'self' 'unsafe-inline'; img-src 'self' data:;"
     />
+    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon" />
     <title>Hello World!</title>
 
     <style>
+      :root {
+        --title-bar-height: 30px;
+        --window-control-width: 137px;
+        --line-color: #b1b1b17d;
+      }
+
+      body {
+        padding-top: calc(var(--title-bar-height) - 8px);
+        background-color: red;
+      }
+
+      .title-bar {
+        width: 100vw;
+        app-region: drag;
+        height: var(--title-bar-height);
+        position: fixed;
+        top: 0;
+        left: 0;
+        font-size: 12px;
+        padding-right: var(--window-control-width);
+        background: #e1e1e11f;
+        color: #000;
+        line-height: var(--title-bar-height);
+        padding-left: 30px;
+        width: calc(100vw - var(--window-control-width) - 30px);
+        user-select: none;
+      }
+
+      .title-bar::after {
+        content: "";
+        height: 1px;
+        position: absolute;
+        bottom: 0;
+        left: 8px;
+        right: 8px;
+        background: var(--line-color);
+      }
+
+      #icon {
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        top: 7px;
+        left: 8px;
+      }
+
       code {
         padding: 0.2em 0.4em;
         font-size: 100%;
@@ -20,6 +67,10 @@
     </style>
   </head>
   <body>
+    <div class="title-bar" id="title-bar">
+      <img id="icon" />
+      <div id="title">custom title bar</div>
+    </div>
     <main>
       <h1>💖 Hello World!</h1>
       <p>Welcome to your simple Electron application.</p>

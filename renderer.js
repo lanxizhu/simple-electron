@@ -6,5 +6,13 @@
  * to expose Node.js functionality from the main process.
  */
 
+const titleBar = document.getElementById("title-bar");
+document.addEventListener("DOMContentLoaded", () => {
+  electron.baseInfo().then((info) => {
+    titleBar.querySelector("#title").innerHTML = info.title;
+    titleBar.querySelector("#icon").src = info.icon;
+  });
+});
+
 const information = document.getElementById("info");
 information.innerHTML = `Using Chrome <code>v${versions.chrome()}</code>, Node.js <code>v${versions.node()}</code>, and Electron <code>v${versions.electron()}</code>`;
