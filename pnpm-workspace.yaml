@@ -1,0 +1,6 @@
+packages:
+  - ./*
+onlyBuiltDependencies:
+  - electron
+catalog:
+  electron: ^36.2.0

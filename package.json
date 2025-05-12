@@ -2,9 +2,9 @@
   "name": "simple-electron",
   "version": "0.0.1",
   "description": "✨ Simple Electron Application",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "electron ."
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,8 @@
     "url": "https://github.com/lanxizhu/simple-electron/issues"
   },
   "homepage": "https://github.com/lanxizhu/simple-electron#readme",
-  "packageManager": "pnpm@10.10.0"
+  "packageManager": "pnpm@10.10.0",
+  "devDependencies": {
+    "electron": "catalog:"
+  }
 }
