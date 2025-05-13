@@ -16,3 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const information = document.getElementById("info");
 information.innerHTML = `Using Chrome <code>v${versions.chrome()}</code>, Node.js <code>v${versions.node()}</code>, and Electron <code>v${versions.electron()}</code>`;
+
+const box = Array.from({ length: 10 });
+box.forEach((_, i) => {
+  box[i] = `<div class="box" id="${i}" data-index="${i}"></div>`;
+});
+document.querySelector(".boxes").innerHTML = box.join("");

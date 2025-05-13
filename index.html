@@ -11,21 +11,76 @@
     <title>Hello World!</title>
 
     <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        /* overflow: hidden; */
+      }
+
+      @property --sb-thumb-color {
+        syntax: "<color>";
+        inherits: true;
+        initial-value: #4d4d4d26;
+      }
+
       :root {
         --title-bar-height: 30px;
         --window-control-width: 137px;
         --line-color: #b1b1b17d;
+
+        --sb-size: 10px;
+        --sb-track-color: transparent;
+
+        ::-webkit-scrollbar {
+          width: var(--sb-size);
+        }
+
+        ::-webkit-scrollbar-track {
+          border-left: 1px solid var(--line-color);
+          background: var(--sb-track-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background: var(--sb-thumb-color);
+        }
       }
 
       body {
-        height: calc(100vh - var(--title-bar-height) - 8px);
-        padding-top: calc(var(--title-bar-height) - 8px);
+        width: calc(100vw);
+        height: calc(100vh);
         background: #c2e59c99;
         background-image: linear-gradient(-45deg, #64b3f4e6 25%, #c2e59c 100%);
+        overflow: hidden;
+      }
+
+      main {
+        --padding: 8px;
+
+        overflow: auto;
+        width: calc(100vw);
+        height: calc(100% - var(--title-bar-height) - var(--padding));
+        word-wrap: break-word;
+        word-break: break-all;
+        scrollbar-gutter: stable both-edges;
+
+        padding: var(--title-bar-height) 0 var(--padding) 0;
+        transition: --sb-thumb-color 0.5s ease;
+      }
+
+      main::-webkit-scrollbar-track {
+        margin: 30px 0 -15px 0;
+      }
+
+      main:hover {
+        --sb-thumb-color: rgba(77, 77, 77, 0.3);
+      }
+
+      main::-webkit-scrollbar-thumb:vertical:hover {
+        --sb-thumb-color: hsla(0, 0%, 30%, 0.4);
       }
 
       .title-bar {
-        width: 100vw;
         app-region: drag;
         height: var(--title-bar-height);
         position: fixed;
@@ -37,8 +92,10 @@
         color: #000;
         line-height: var(--title-bar-height);
         padding-left: 30px;
-        width: calc(100vw - var(--window-control-width) - 30px);
+        width: calc(100vw - var(--window-control-width) - 20px);
         user-select: none;
+        backdrop-filter: blur(10px);
+        z-index: 9999;
       }
 
       .title-bar::after {
@@ -46,8 +103,8 @@
         height: 1px;
         position: absolute;
         bottom: 0;
-        left: 8px;
-        right: 8px;
+        left: var(--sb-size);
+        right: calc(var(--sb-size) * 2 - 0.5px);
         background: var(--line-color);
       }
 
@@ -66,6 +123,31 @@
         background-color: rgba(129, 139, 152, 0.175);
         border-radius: 6px;
       }
+
+      .box {
+        width: 100px;
+        height: 100px;
+        background: #fff;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        color: #000;
+        margin: 20px auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .box:hover {
+        background: #f0f0f0;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .box::after {
+        content: attr(data-index);
+      }
     </style>
   </head>
   <body>
@@ -77,6 +159,11 @@
       <h1>💖 Hello World!</h1>
       <p>Welcome to your simple Electron application.</p>
       <p id="info"></p>
+
+      <div class="boxes">
+        <div class="box" data-index="1"></div>
+        <div class="box" data-index="2"></div>
+      </div>
     </main>
 
     <!-- You can also require other files to run in this process -->
