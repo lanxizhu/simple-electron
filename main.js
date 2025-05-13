@@ -20,6 +20,8 @@ function createWindow() {
       // symbolColor: "#74b9ff",
       height: 30,
     },
+    // Mica background has been error. see https://github.com/electron/electron/issues/46753
+    // backgroundMaterial: "tabbed",
 
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
