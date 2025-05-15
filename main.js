@@ -1,11 +1,10 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, ipcMain, nativeImage } = require("electron");
-const path = require("node:path");
-const url = require("node:url");
+import { app, BrowserWindow, ipcMain, nativeImage } from "electron";
+import { fileURLToPath, URL } from "node:url";
 
 function createWindow() {
   const icon = nativeImage.createFromPath(
-    path.join(__dirname, "assets/favicon.ico")
+    fileURLToPath(new URL("assets/favicon.ico", import.meta.url))
   );
 
   // Create the browser window.
@@ -24,7 +23,7 @@ function createWindow() {
     // backgroundMaterial: "tabbed",
 
     webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
+      preload: fileURLToPath(new URL("preload.js", import.meta.url)),
     },
   });
 
