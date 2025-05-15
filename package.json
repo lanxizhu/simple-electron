@@ -5,7 +5,9 @@
   "main": "main.js",
   "type": "module",
   "scripts": {
-    "dev": "electron ."
+    "dev": "npm-run-all --parallel dev:vite dev:electron",
+    "dev:vite": "vite",
+    "dev:electron": "electron ."
   },
   "repository": {
     "type": "git",
@@ -22,6 +24,8 @@
   "homepage": "https://github.com/lanxizhu/simple-electron#readme",
   "packageManager": "pnpm@10.10.0",
   "devDependencies": {
-    "electron": "catalog:"
+    "electron": "catalog:",
+    "npm-run-all2": "catalog:",
+    "vite": "catalog:"
   }
 }

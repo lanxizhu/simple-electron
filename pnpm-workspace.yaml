@@ -4,3 +4,5 @@ onlyBuiltDependencies:
   - electron
 catalog:
   electron: ^36.2.0
+  npm-run-all2: ^8.0.1
+  vite: ^6.3.5
