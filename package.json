@@ -23,6 +23,9 @@
   },
   "homepage": "https://github.com/lanxizhu/simple-electron#readme",
   "packageManager": "pnpm@10.10.0",
+  "dependencies": {
+    "sass": "catalog:"
+  },
   "devDependencies": {
     "electron": "catalog:",
     "npm-run-all2": "catalog:",
