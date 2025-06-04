@@ -3,7 +3,7 @@ packages:
 onlyBuiltDependencies:
   - electron
 catalog:
-  electron: ^36.2.0
-  npm-run-all2: ^8.0.1
-  sass: ^1.89.0
+  electron: ^36.3.2
+  npm-run-all2: ^8.0.4
+  sass: ^1.89.1
   vite: ^6.3.5
