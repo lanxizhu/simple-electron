@@ -22,7 +22,7 @@
     "url": "https://github.com/lanxizhu/simple-electron/issues"
   },
   "homepage": "https://github.com/lanxizhu/simple-electron#readme",
-  "packageManager": "pnpm@10.10.0",
+  "packageManager": "pnpm@11.3.0",
   "dependencies": {
     "sass": "catalog:"
   },
